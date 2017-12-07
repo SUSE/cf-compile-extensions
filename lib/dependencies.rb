@@ -68,12 +68,12 @@ module CompileExtensions
       dependency['uri']
     end
 
-    def find_md5(uri)
+    def find_sha256(uri)
       dependency = find_matching_dependency(uri)
 
       return nil if dependency.nil?
 
-      dependency['md5']
+      dependency['sha256']
     end
 
     private
@@ -100,7 +100,7 @@ module CompileExtensions
 
     def manifest_to_semver(version, name)
       case name
-      when 'dotnet'
+      when 'dotnet', 'dotnet-framework'
         # needed for ruby 1.9.1 support
         version.gsub('-','.')
       when 'jruby'
